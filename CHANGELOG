@@ -1,2 +1,9 @@
+0.02	30 July 2002
+	Added mention of using "require" if you don't want to have the
+	"import" class method called.  Suggestion of Rafael Garcia-Suarez.
+
+	Changed the class method names so that they are created directly
+	rather than imported into the UNIVERSAL namespace.
+
 0.01	29 July 2002
 	First version of Thread::Use.

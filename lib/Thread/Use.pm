@@ -4,15 +4,9 @@ package Thread::Use;
 # Make sure we do everything by the book
 # Except for the dirty reference tricks (that's what this module is made of)
 
-our $VERSION : unique = '0.01';
+our $VERSION : unique = '0.02';
 use strict;
 no strict 'refs';
-
-# Make sure UNIVERSAL class method "useit" will come here
-# Make sure UNIVERSAL class method "noit" will come here
-
-*UNIVERSAL::useit = \&_useit;
-*UNIVERSAL::noit = \&_noit;
 
 # Satisfy -require-
 
@@ -22,7 +16,7 @@ no strict 'refs';
 #  IN: 1 class to use
 #      2..N any parameters to import
 
-sub _useit {
+sub UNIVERSAL::useit {
 
 # Make sure the module is loaded
 # For all of the possible places where an import() could live
@@ -34,13 +28,13 @@ sub _useit {
         next unless defined( &{$_.'::import'} );
         goto &{$_.'::import'};
     }
-} #_useit
+} #_UNIVERSAL::useit
 
 #---------------------------------------------------------------------------
 #  IN: 1 class to use
 #      2..N any parameters to unimport
 
-sub _noit {
+sub UNIVERSAL::noit {
 
 # Make sure the module is loaded
 # For all of the possible places where an import() could live
@@ -52,7 +46,7 @@ sub _noit {
         next unless defined( &{$_.'::unimport'} );
         goto &{$_.'::unimport'};
     }
-} #_noit
+} #_UNIVERSAL::noit
 
 #---------------------------------------------------------------------------
 #  IN: 1 class for which to require
@@ -151,6 +145,11 @@ or to use the opposite C<no> equivalent;
 
 This modules is still experimental and subject to change.  At the current
 stage it is more a proof of concept than anything else.
+
+There is no way to C<useit> a module without having it call the "import"
+class method, as you can do with C<use Module ()>.  However, a simple
+C<require Module> does exactly the same, so if you want to C<useit> a module
+without calling its "import" method, you should just use C<require>.
 
 =head1 AUTHOR
 
