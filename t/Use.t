@@ -6,6 +6,7 @@ BEGIN {				# Magic Perl CORE pragma
 }
 
 use Test::More tests => 8;
+use strict;
 use warnings;
 
 BEGIN { use_ok( 'threads' ) }
@@ -17,11 +18,11 @@ like( $@,qr/^Undefined subroutine &Storable::freeze called at/,
  'check result of eval' );
 
 # should work because Storable now in thread memory
-$thread = threads->new(
+my $thread = threads->new(
  sub { useit Storable; eval {Storable::freeze( \@_ )}; $@ }
 );
 isa_ok( $thread,'threads',		'check object type' );
-$result = $thread->join;
+my $result = $thread->join;
 is( $result,'',				'check result of eval' );
 
 # should work because Storable now in thread memory

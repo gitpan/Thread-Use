@@ -4,7 +4,7 @@ package Thread::Use;
 # Make sure we do everything by the book
 # Except for the dirty reference tricks (that's what this module is made of)
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 use strict;
 no strict 'refs';
 
@@ -159,7 +159,7 @@ Please report bugs to <perlbugs@dijkmat.nl>.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 Elizabeth Mattijsen <liz@dijkmat.nl>. All rights
+Copyright (c) 2002-2003 Elizabeth Mattijsen <liz@dijkmat.nl>. All rights
 reserved.  This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
 

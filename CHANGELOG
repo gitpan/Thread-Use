@@ -1,3 +1,7 @@
+0.04	13 August 2003
+	Cleaned up Makefile.PL and updated the copyright notice.  Made sure
+	the test-suite runs under strict.
+
 0.03	30 September 2002
 	Removed "our" from $VERSION, should shave off some bytes in
 	memory usage, as found from testing with Benchmark::Thread::Size.
