@@ -4,7 +4,7 @@ package Thread::Use;
 # Make sure we do everything by the book
 # Except for the dirty reference tricks (that's what this module is made of)
 
-our $VERSION : unique = '0.02';
+$VERSION = '0.03';
 use strict;
 no strict 'refs';
 
