@@ -4,7 +4,7 @@ package Thread::Use;
 # Make sure we do everything by the book
 # Except for the dirty reference tricks (that's what this module is made of)
 
-$VERSION = '0.04';
+$VERSION = '0.05';
 use strict;
 no strict 'refs';
 
@@ -28,7 +28,7 @@ sub UNIVERSAL::useit {
         next unless defined( &{$_.'::import'} );
         goto &{$_.'::import'};
     }
-} #_UNIVERSAL::useit
+} #UNIVERSAL::useit
 
 #---------------------------------------------------------------------------
 #  IN: 1 class to use
@@ -46,7 +46,7 @@ sub UNIVERSAL::noit {
         next unless defined( &{$_.'::unimport'} );
         goto &{$_.'::unimport'};
     }
-} #_UNIVERSAL::noit
+} #UNIVERSAL::noit
 
 #---------------------------------------------------------------------------
 #  IN: 1 class for which to require
@@ -140,6 +140,10 @@ or to use the opposite C<no> equivalent;
    # special code
    noit warnings "all";
  }
+
+=head1 REQUIRED MODULES
+
+ (none)
 
 =head1 CAVEATS
 
